@@ -1,24 +1,18 @@
 window.onload = function() {
 
 
-  const portItems = document.getElementsByClassName('portfolio_item');
-  // const portImg = document.getElementById('portImg');
-  const portInfo = document.getElementById('portInfo');
+  const portItems = document.querySelectorAll('.card');
 
+  portItems.forEach((item) => {
+    item.addEventListener("mouseenter", (e) => {
+      let portInfo = item.querySelector('.portfolio__info');
+      portInfo.style.top = 0+'px';
+    });
+    item.addEventListener("mouseleave", (e) => {
+      let cardInfo = item.querySelector('.portfolio__info');
+      cardInfo.style.top = 80+'px';
+    });
+  });
 
-  console.log(portItems);
-
-  // portItem.addEventListener("mouseenter", showCard);
-  // portItem.addEventListener("mouseleave", hideCard);
-
-  function showCard(){
-    portInfo.style.top = 0+'px';
-    portInfo.style.background = `red`;
-  }
-
-  function hideCard(){
-    portInfo.style.top = 80+'px';
-    portInfo.style.background = `blueviolet`;
-  }
 
 }
