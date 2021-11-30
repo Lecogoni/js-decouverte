@@ -1,27 +1,49 @@
+window.onload = function() {
 
-let originalString= 'dkzdojc ojofze joij jiojfzefjejfezknkfoiejf efioejfe';
-let counting = 0
+  const consonnes = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "z"];
+  const voyelles = ["a", "e", "i", "o", "u", "y"];
 
-function typingText(){
-
-  console.log('in the fincution');
-
-  let scriptingZone = document.getElementById('text-scripting');
-  console.log(scriptingZone);
-
-  if (counting < originalString.length ) {
-    courant = scriptingZone.innerHTML.substring(0, scriptingZone.innerHTML.length - 1);
-    courant += originalString.charAt(counting)+'_';
-    console.log(courant);
-    scriptingZone.innerHTML = courant
-  } else {
-    scriptingZone.innerHTML = ""
-    counting = -1 // remise a - 1 pour que au tour suivant il passe a zero
+  function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  counting ++;
-  setTimeout("typingText()", 100);
+  let times = 6;
 
-}
+  function sentence(times){
+    let numbOfWords = randomInteger(1, times)
+    let sentence = '';
+    for(var i = 0; i < numbOfWords; i++){
+      sentence += word(times) + " ";
+    }
+    console.log(sentence);
+    return sentence;
+  }
 
-window.onload = function() { typingText();}
+  function word(times){
+    numOfPhenome = randomInteger(1, times)
+    let word = '';
+    for(var i = 0; i < numOfPhenome; i++){
+      word += phoneme();
+    }
+    return word;
+  }
+
+ 
+  function phoneme(){
+
+    let num = Math.random()
+    let phoneme = '';
+
+    if (num <= 0.5){
+      phoneme += voyelles[randomInteger(0, (voyelles.length - 1))];
+      phoneme += consonnes[randomInteger(0, (consonnes.length - 1))];
+    } else {
+      phoneme += consonnes[randomInteger(0, (consonnes.length - 1))];
+      phoneme += voyelles[randomInteger(0, (voyelles.length - 1))];
+    }
+    return phoneme;
+  }
+
+  sentence(times)
+
+ }
