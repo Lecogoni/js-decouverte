@@ -11,7 +11,7 @@
   height: 100px;
   left: 10px;
   top: 10px;
-  background-color: orange;
+  border: 1px solid grey;
 }
 
 #box{
@@ -19,4 +19,8 @@
   width: 100px;
   height: 100px;
   background-color: seagreen;
+}
+
+.blue {
+  background-color: rgb(61, 14, 231);
 }
