@@ -24,22 +24,31 @@ function displayDimensions() {
 
  
 
-document.addEventListener('keydown', (event) => {
-  let keynum = event.key;
-  
-  if (keynum === 'ArrowRight'){
-
-    cat.style.cssText = `left:${catLeft += 2}px;top:${catTop}px;`;
-   
-  } else if (keynum === 'ArrowDown') {
-
-    cat.style.cssText = `top:${catTop += 2}px;left:${catLeft}px;`;
-  } else if (keynum === 'ArrowUp') {
-   
-    cat.style.cssText = `top:${catTop -= 2}px;left:${catLeft}px;`;
-  } else if (keynum === 'ArrowLeft') {
-   
-    cat.style.cssText = `left:${catLeft -= 2}px;top:${catTop}px;`;
-  }
+let key = document.addEventListener('keydown', (event) => {
+  keynum = event.key;
+  setInterval(moveDiv(keynum), 500,)
 });
+
+
+  function moveDiv(keynum){
+
+    
+    if (keynum === 'ArrowRight'){
+      
+      cat.style.cssText = `left:${catLeft += 2}px;top:${catTop}px;`;
+      
+    } else if (keynum === 'ArrowDown') {
+      
+      cat.style.cssText = `top:${catTop += 2}px;left:${catLeft}px;`;
+    } else if (keynum === 'ArrowUp') {
+      
+      cat.style.cssText = `top:${catTop -= 2}px;left:${catLeft}px;`;
+    } else if (keynum === 'ArrowLeft') {
+      
+      cat.style.cssText = `left:${catLeft -= 2}px;top:${catTop}px;`;
+    }
+  }
+    
+
+
 
