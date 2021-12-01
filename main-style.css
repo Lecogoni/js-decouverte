@@ -1,0 +1,22 @@
+
+
+
+.wrapper {
+  position: relative;
+}
+
+#cat{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 10px;
+  top: 10px;
+  background-color: orange;
+}
+
+#box{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: seagreen;
+}
