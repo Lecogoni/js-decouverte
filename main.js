@@ -1,4 +1,7 @@
 
+/*
+left 37 ; top 38 ; right 39 ; bottom 40
+*/
 
 const cat = document.getElementById('cat')
 const box = document.getElementById('box')
@@ -6,6 +9,7 @@ const box = document.getElementById('box')
 let rect = cat.getBoundingClientRect();
 let catTop = rect.top;
 let catLeft = rect.left;
+let speed = 5;
 
 /**
  * function execute on body resize, load, orientation change
@@ -14,7 +18,7 @@ let catLeft = rect.left;
 function displayDimensions() {
   
   let height = window.innerHeight;
-  // document.body.offsetHeight
+  // let tutu = document.body.offsetHeight
   let width = document.body.offsetWidth;
   // console.log('h' + height);
   // console.log('w' + width);
@@ -23,9 +27,9 @@ function displayDimensions() {
 
  
 
-let key = document.addEventListener('keydown', (event) => {
-  moveDiv(event.key)
-});
+// let key = document.addEventListener('keydown', (event) => {
+//   moveDiv(event.key)
+// });
 
 
 function moveDiv(keynum){
@@ -43,16 +47,50 @@ function moveDiv(keynum){
   checkMatch(catPos)
 }
 
-function checkMatch(catPos){
-  
-  let boxPos = box.getBoundingClientRect()
 
+// ICI PREND EN COMPTE LE DEPLACEMENT EN DIAGONALE
+
+window.addEventListener("keyup", handleKeyPress);
+window.addEventListener("keydown", handleKeyPress);
+
+let keys = {}
+
+function handleKeyPress(e) {
+  if (e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40) {
+    if (e.type == 'keydown') {
+      keys[e.keyCode] = true
+    } else {
+      keys[e.keyCode] = false
+    }
+  }
+  moveTheDiv(keys)
+}
+
+
+
+
+function moveTheDiv(keys){
+  console.log(keys[39]);
+
+  if(keys[37] === true){catLeft -= speed};
+  if(keys[38] === true){catTop -= speed};
+  if(keys[39] === true){catLeft += speed};
+  if(keys[40] === true){catTop += speed};
+
+  cat.style.cssText = `left:${catLeft}px;top:${catTop}px;`
+
+  let catPos = cat.getBoundingClientRect();
+  checkMatch(catPos)
+}
+
+
+function checkMatch(catPos){
+  let boxPos = box.getBoundingClientRect()
   if ((catPos.top >= boxPos.top - 10 && catPos.left >= boxPos.left - 10) && (catPos.top <= boxPos.top + 10 && catPos.left <= boxPos.left + 10)) {
     cat.classList.add("blue");
   } else {
     cat.classList.remove("blue");
   }
-
 }
 
 // https://stackoverflow.com/questions/7298507/move-element-with-keypress-multiple
